@@ -6,7 +6,7 @@
 /*   By: ssottori <ssottori@student.42london.com    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/11/29 18:35:55 by ssottori          #+#    #+#             */
-/*   Updated: 2024/11/29 18:36:08 by ssottori         ###   ########.fr       */
+/*   Updated: 2024/11/29 19:34:48 by ssottori         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,8 +39,18 @@ void	ft_init_data(t_data *data)
 	while (i < data->nop)
 	{
 		data->pandas[i].id = i;
-		data->pandas[i].l_chopstick = i;
-		data->pandas[i].r_chopstick = (i + 1) % data->nop;
+		if (i % 2 == 0)
+		{
+			data->pandas[i].l_chopstick = i;
+			data->pandas[i].r_chopstick = (i + 1) % data->nop;
+		}
+		else
+		{
+			data->pandas[i].l_chopstick = (i + 1) % data->nop;
+			data->pandas[i].r_chopstick = i;
+		}
+		//data->pandas[i].l_chopstick = i;
+		//data->pandas[i].r_chopstick = (i + 1) % data->nop;
 		data->pandas[i].eat_cnt = 0;
 		data->pandas[i].last_meal = 0;
 		data->pandas[i].data = data;

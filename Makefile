@@ -6,7 +6,8 @@ GREEN=\033[1;32m
 NC=\033[0m
 
 # ===============FLAGS=================
-CCFLAGS = gcc -Wall -Wextra -Werror -ggdb3 -g3 -pthread
+CC = gcc
+FLAGS = -Wall -Wextra -Werror -ggdb3 -fsanitize=thread
 RM = rm -rf
 NAME = philo
 
@@ -29,12 +30,12 @@ OBJS = $(SRCS:.c=.o)
 all: $(NAME)
 
 $(NAME): $(OBJS)
-			$(CCFLAGS) $(OBJS) $(IFLAGS) -o $(NAME)
+			$(CC) $(FLAGS) $(OBJS) $(IFLAGS) -o $(NAME)
 	@echo "[$(GREEN)PHILOS$(NC)] - $<"
 
 %.o: %.c
 	echo "[$(GREEN)PHILOS$(NC)] - $<"
-	$(CCFLAGS) $(IFLAGS) -c $< -o $@
+	$(CC) $(FLAGS) $(IFLAGS) -c $< -o $@
 
 # ===============CLEAN==================
 clean:
